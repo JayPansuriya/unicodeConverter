@@ -1,10 +1,11 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { Component } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import {ClipboardModule} from '@angular/cdk/clipboard';
-import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { UnicodeConverterService } from 'src/shared/service/unicode-converter/unicode-converter.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,6 +17,10 @@ export class DashboardComponent {
 
   inputText: string = '';
   outputText: string = '';
+
+  constructor(
+    public unicodeConverter: UnicodeConverterService,
+  ) {}
 
   handelReset() {
     this.inputText = '';
@@ -30,7 +35,7 @@ export class DashboardComponent {
   }
 
   handleConvert() {
-    this.outputText = this.inputText;
+    this.outputText = this.unicodeConverter.convertToKap(this.inputText);
   }
 
 }
