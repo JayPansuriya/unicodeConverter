@@ -1,1 +1,35 @@
-<p>dashboard works!</p>
+<div class="form-wrapper">
+  <form #inputForm="ngForm" class="input-form">
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Paste your text here" [(ngModel)]="inputText" name="input" rows="8"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div class="buttons-wrapper">
+  <button (click)="handelReset()" mat-raised-button color="primary">
+    <mat-icon>delete</mat-icon>
+    Clear
+  </button>
+  <button (click)="handlePaste()" mat-raised-button color="primary">
+    <mat-icon>content_paste</mat-icon>
+    Paste
+  </button>
+  <button (click)="handleConvert()" mat-raised-button color="primary">
+    <mat-icon>autorenew</mat-icon>
+    Convert
+  </button>
+</div>
+
+<div class="form-wrapper">
+  <form #inputForm="ngForm" class="input-form">
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Paste your text here" [(ngModel)]="outputText" name="output" rows="8" disabled></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div class="buttons-wrapper">
+  <button [cdkCopyToClipboard]="outputText" mat-raised-button color="primary">
+    <mat-icon>file_copy</mat-icon>
+    Copy
+  </button>
+</div>
